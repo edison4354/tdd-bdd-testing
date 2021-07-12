@@ -1,6 +1,7 @@
 const mocha = require("mocha")
 const chai = require("chai")
 const utils = require("../utils")
+const { util } = require("chai")
 const expect = chai.expect
 
 // ========================================================
@@ -72,14 +73,52 @@ it("Should create a new (object) Item with name and price", function() {
 })
 
 it("Should return an array containing all items in cart", function() {
-  
+  const cartItems = utils.getShoppingCart()
+  const item1 = utils.createItem('chicken', 4.99)
+  const item2 = utils.createItem('turkey', 3.99)
+  const item3 = utils.createItem('beef', 7.99)
+
+  utils.addItemToCart(item1)
+  utils.addItemToCart(item2)
+  utils.addItemToCart(item3)
+
+  expect(cartItems).to.be.a("array")
+  expect(cartItems).to.have.members([item1, item2, item3])
+  expect(cartItems).to.have.lengthOf(3)
 })
 
-it("Should add a new item to the shopping cart")
+it("Should add a new item to the shopping cart", function() {
+  const item = utils.createItem('chicken', 4.99)
+  const cart = utils.getShoppingCart()
 
-it("Should return the number of items in the cart")
+  utils.addItemToCart(item)
 
-it("Should remove items from cart")
+  expect(cart).to.have.members([item])
+})
+
+it("Should return the number of items in the cart", function() {
+  const item1 = utils.createItem('chicken', 4.99)
+  const item2 = utils.createItem('turkey', 3.99)
+  const item3 = utils.createItem('beef', 7.99)
+
+  utils.addItemToCart(item1)
+  utils.addItemToCart(item2)
+  utils.addItemToCart(item3)
+
+  const cartSize = utils.getNumItemsInCart()
+  expect(cartSize).to.be.a('number')
+  expect(cartSize).to.equal(3)
+})
+
+it("Should remove items from cart", function() {
+  const item = utils.createItem('chicken', 4.99)
+  utils.addItemToCart(item)
+
+  utils.removeItemFromCart(item)
+  const cart = utils.getShoppingCart()
+  expect(cart).to.be.a('array')
+  expect(cart).to.not.have.members([item])
+})
 
 // ========================================================
 // Stretch Challenges
