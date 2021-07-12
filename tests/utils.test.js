@@ -25,7 +25,28 @@ it("should say hello", function() {
 // 4. Finally see if you would like to refactor your code at all.
 // This is called "Red-Green-Refactor"
 // ========================================================
+it("Should return the area of a rectangle", function() {
+  const w = 10 
+  const h = 10
+  const area = utils.area(w, h)
+  expect(area).to.be.a('number')
+  expect(area).to.equal(100)
+})
 
+it("Should return the perimeter of a rectangle", function() {
+  const w = 10 
+  const h = 5
+  const perimeter = utils.perimeter(w, h)
+  expect(perimeter).to.be.a('number')
+  expect(perimeter).to.equal(30)
+})
+
+it("Should return the area of a circle", function() {
+  const r = 5
+  const circleArea = utils.circleArea(r)
+  expect(circleArea).to.be.a('number')
+  expect(circleArea).to.equal(78.54)
+})
 
 
 
@@ -50,7 +71,9 @@ it("Should create a new (object) Item with name and price", function() {
   expect(item).to.have.property("quantity", 1)
 })
 
-it("Should return an array containing all items in cart")
+it("Should return an array containing all items in cart", function() {
+  
+})
 
 it("Should add a new item to the shopping cart")
 
